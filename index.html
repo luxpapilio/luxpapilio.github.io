@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="luxpapilio 的个人介绍页面 - 光与蝶的追寻者，数字艺术家与前端开发者">
+    <meta name="theme-color" content="#0a0f1e">
+    <title>luxpapilio · 光之蝶 | 个人介绍</title>
+    <!-- Google Fonts 优雅衬线与现代无衬线字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (免费图标库，用于社交及装饰) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0b0e17;
+            background-image: radial-gradient(circle at 15% 30%, rgba(180, 130, 255, 0.08) 0%, rgba(10, 15, 30, 0.95) 80%),
+                              repeating-linear-gradient(45deg, rgba(255, 215, 150, 0.02) 0px, rgba(255, 215, 150, 0.02) 2px, transparent 2px, transparent 8px);
+            font-family: 'Inter', sans-serif;
+            color: #edeef2;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* 自定义滚动条 */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #141a2a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e4b363;
+            border-radius: 8px;
+        }
+
+        /* 全局容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.8rem 4rem;
+        }
+
+        /* 玻璃拟态卡片通用样式 */
+        .glass-card {
+            background: rgba(20, 28, 45, 0.55);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            border: 1px solid rgba(228, 179, 99, 0.2);
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.4), 0 0 0 0.5px rgba(228, 179, 99, 0.1) inset;
+            transition: transform 0.25s ease, border-color 0.2s, box-shadow 0.3s;
+        }
+        .glass-card:hover {
+            border-color: rgba(228, 179, 99, 0.5);
+            box-shadow: 0 25px 40px -15px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(228, 179, 99, 0.2) inset;
+            transform: translateY(-3px);
+        }
+
+        /* 头部 / Hero 区域 */
+        .hero {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 2rem 1rem 1.8rem;
+            position: relative;
+        }
+        .avatar {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #2b2f45, #191e2f);
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 15px 30px -8px rgba(0,0,0,0.5), 0 0 0 3px rgba(228, 179, 99, 0.4);
+            transition: all 0.3s;
+        }
+        .avatar i {
+            font-size: 4.2rem;
+            color: #f3cd8a;
+            text-shadow: 0 0 8px #e4b36380;
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            background: linear-gradient(135deg, #F9E5B3, #E4B363, #D5A35A);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .hero .tagline {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #b9c3dd;
+            border-top: 1px dashed rgba(228, 179, 99, 0.5);
+            display: inline-block;
+            padding-top: 0.6rem;
+            margin-top: 0.5rem;
+            letter-spacing: 1px;
+        }
+        .hero .bio-short {
+            max-width: 600px;
+            margin: 1.2rem auto 0;
+            color: #cbd5f0;
+            font-size: 1rem;
+        }
+
+        /* 蝴蝶装饰 (浮动光点) */
+        .butterfly-deco {
+            position: fixed;
+            bottom: 15%;
+            right: 2%;
+            font-size: 2rem;
+            opacity: 0.2;
+            pointer-events: none;
+            z-index: 0;
+            animation: floatButterfly 12s infinite alternate ease-in-out;
+        }
+        .butterfly-deco-left {
+            position: fixed;
+            top: 18%;
+            left: 1%;
+            font-size: 2.5rem;
+            opacity: 0.15;
+            pointer-events: none;
+            transform: rotate(-10deg);
+            animation: floatButterfly 15s infinite alternate-reverse;
+        }
+        @keyframes floatButterfly {
+            0% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+            100% { transform: translateY(-25px) translateX(15px) rotate(5deg); }
+        }
+
+        /* 通用章节样式 */
+        section {
+            margin-bottom: 4rem;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+            letter-spacing: -0.3px;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, #e4b363, #f3da9f, transparent);
+            border-radius: 4px;
+        }
+
+        /* 关于我 */
+        .about-content {
+            padding: 2rem 2rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.7;
+            color: #e6ecff;
+        }
+        .about-content p {
+            margin-bottom: 1rem;
+        }
+        .about-highlight {
+            color: #ecc07c;
+            font-weight: 500;
+        }
+        .quote {
+            font-style: italic;
+            border-left: 3px solid #e4b363;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.5rem;
+            font-size: 0.95rem;
+            color: #cfdbff;
+        }
+
+        /* 技能区域网格 */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1rem;
+        }
+        .skill-item {
+            background: rgba(15, 21, 35, 0.7);
+            backdrop-filter: blur(4px);
+            border-radius: 2rem;
+            padding: 1rem 0.8rem;
+            text-align: center;
+            transition: all 0.2s;
+            border: 1px solid rgba(228, 179, 99, 0.2);
+        }
+        .skill-item i {
+            font-size: 2rem;
+            color: #e4b363;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+        .skill-item span {
+            display: block;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.3px;
+        }
+        .skill-item:hover {
+            background: rgba(228, 179, 99, 0.12);
+            border-color: #e4b363;
+            transform: scale(1.02);
+        }
+
+        /* 兴趣/特长 小标签 */
+        .interests {
+            margin-top: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+        .interest-tag {
+            background: rgba(228, 179, 99, 0.12);
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 400;
+            border: 0.5px solid rgba(228, 179, 99, 0.3);
+            transition: 0.2s;
+        }
+        .interest-tag i {
+            margin-right: 6px;
+            font-size: 0.75rem;
+            color: #e4b363;
+        }
+        .interest-tag:hover {
+            background: rgba(228, 179, 99, 0.25);
+        }
+
+        /* 联系卡片 + 社交链接 */
+        .contact-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .contact-info {
+            flex: 1.2;
+            min-width: 200px;
+        }
+        .contact-info p {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+        }
+        .contact-info i {
+            width: 32px;
+            font-size: 1.3rem;
+            color: #e4b363;
+            text-align: center;
+        }
+        .social-links {
+            flex: 1;
+            display: flex;
+            gap: 1.5rem;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+        }
+        .social-icon {
+            background: rgba(25, 32, 50, 0.8);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #eef3ff;
+            transition: all 0.25s;
+            border: 1px solid rgba(228, 179, 99, 0.3);
+            text-decoration: none;
+        }
+        .social-icon:hover {
+            background: #e4b363;
+            color: #0b0e17;
+            transform: translateY(-5px);
+            border-color: #f3da9f;
+            box-shadow: 0 8px 18px rgba(228, 179, 99, 0.3);
+        }
+        .contact-btn {
+            display: inline-block;
+            margin-top: 1.2rem;
+            background: linear-gradient(95deg, #e4b363, #cb954e);
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 600;
+            color: #11161f;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.2s;
+            box-shadow: 0 5px 12px rgba(0,0,0,0.2);
+        }
+        .contact-btn i {
+            margin-right: 6px;
+        }
+        .contact-btn:hover {
+            background: linear-gradient(95deg, #f5cf89, #e4b363);
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(228, 179, 99, 0.4);
+        }
+
+        /* footer 底部 */
+        footer {
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #8e9ac0;
+            border-top: 1px solid rgba(228, 179, 99, 0.25);
+            padding-top: 2rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem 1.2rem 3rem;
+            }
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+            .section-title {
+                font-size: 1.7rem;
+            }
+            .contact-flex {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .social-links {
+                justify-content: flex-start;
+                margin-top: 1rem;
+            }
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+            .avatar {
+                width: 100px;
+                height: 100px;
+            }
+            .avatar i {
+                font-size: 3.5rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero .tagline {
+                font-size: 1rem;
+            }
+            .about-content {
+                padding: 1.5rem;
+            }
+        }
+
+        /* 光晕点缀 */
+        .glow-spot {
+            position: fixed;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(228,179,99,0.08) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+            top: -20%;
+            right: -20%;
+        }
+        .glow-spot2 {
+            bottom: -10%;
+            left: -15%;
+            top: auto;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(100, 80, 200, 0.08) 0%, rgba(0,0,0,0) 70%);
+        }
+    </style>
+</head>
+<body>
+
+<!-- 背景装饰光晕 + 浮动蝴蝶emoji（增加自然气息）-->
+<div class="glow-spot"></div>
+<div class="glow-spot glow-spot2"></div>
+<div class="butterfly-deco">🦋✨</div>
+<div class="butterfly-deco-left">🦋🌿</div>
+
+<div class="container">
+    <!-- Hero 主视觉区 -->
+    <div class="hero glass-card">
+        <div class="avatar">
+            <i class="fas fa-feather-alt"></i> <!-- 羽翼般元素，隐喻蝶翼；干净高级 -->
+        </div>
+        <h1>luxpapilio</h1>
+        <div class="tagline">
+            <i class="fas fa-sun" style="font-size: 0.9rem;"></i> 光之蝶 · 蜕变美学 <i class="fas fa-butterfly" style="font-size: 0.9rem;"></i>
+        </div>
+        <div class="bio-short">
+            以光为引，破茧成蝶 / 前端开发者 & 数字艺术家 / 捕捉优雅与灵动的瞬间
+        </div>
+    </div>
+
+    <!-- 关于我 section -->
+    <section>
+        <h2 class="section-title">✦ 关于我</h2>
+        <div class="glass-card about-content">
+            <p>你好，我是 <span class="about-highlight">luxpapilio</span> —— 这个名字源自拉丁语 <strong>“lux”</strong> (光) 与 <strong>“papilio”</strong> (蝴蝶)。</p>
+            <p>我相信代码与美学如同蝴蝶振翅，在光中折射出无限可能。作为一名跨领域创作者，我热爱将前端工程与视觉诗意融合，构建有温度、有呼吸感的数字产品。过去几年里，我与不同团队合作，设计了多个品牌界面与交互原型，并持续探索<span class="about-highlight">响应式设计、动态视觉与沉浸式体验</span>。</p>
+            <p>除了编程与设计，我也痴迷自然摄影、昆虫博物学与古典符号学；蝴蝶的光泽与变幻使我始终保持对细节的敏锐。我希望通过我的作品，为用户带来如晨光穿透蝶翼般的明亮感受。</p>
+            <div class="quote">
+                <i class="fas fa-quote-left" style="color:#e4b363; margin-right: 6px;"></i> 在每一行代码里，埋一颗光的种子；让每一次交互，如蝶拂过花丛。
+            </div>
+        </div>
+    </section>
+
+    <!-- 专业技能 + 兴趣融合 -->
+    <section>
+        <h2 class="section-title">✦ 技能与方法</h2>
+        <div class="glass-card" style="padding: 1.8rem 1.8rem;">
+            <div class="skills-grid">
+                <div class="skill-item"><i class="fab fa-html5"></i><span>HTML5 /语义化</span></div>
+                <div class="skill-item"><i class="fab fa-css3-alt"></i><span>CSS3 / 动画</span></div>
+                <div class="skill-item"><i class="fab fa-js"></i><span>JavaScript (ES6+)</span></div>
+                <div class="skill-item"><i class="fab fa-react"></i><span>React / Vue</span></div>
+                <div class="skill-item"><i class="fas fa-palette"></i><span>UI/UX 设计</span></div>
+                <div class="skill-item"><i class="fas fa-drafting-compass"></i><span>响应式/移动优先</span></div>
+                <div class="skill-item"><i class="fas fa-bezier-curve"></i><span>交互动效</span></div>
+                <div class="skill-item"><i class="fas fa-database"></i><span>Node.js / 工具链</span></div>
+            </div>
+            <!-- 兴趣爱好标签 -->
+            <div class="interests">
+                <span class="interest-tag"><i class="fas fa-camera"></i> 自然摄影</span>
+                <span class="interest-tag"><i class="fas fa-butterfly"></i> 鳞翅目研究</span>
+                <span class="interest-tag"><i class="fas fa-moon"></i> 光影艺术</span>
+                <span class="interest-tag"><i class="fas fa-music"></i> 氛围音乐</span>
+                <span class="interest-tag"><i class="fas fa-leaf"></i> 生态永续</span>
+                <span class="interest-tag"><i class="fas fa-book-open"></i> 神秘学符号</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系 + 社交区域 (体现个人品牌) -->
+    <section>
+        <h2 class="section-title">✦ 结缘 · 共鸣</h2>
+        <div class="glass-card" style="padding: 1.8rem 2rem;">
+            <div class="contact-flex">
+                <div class="contact-info">
+                    <p><i class="fas fa-envelope"></i> <span>hello@luxpapilio.space</span></p>
+                    <p><i class="fas fa-map-marker-alt"></i> <span>数字游牧 · 现居杭州 / 上海</span></p>
+                    <p><i class="fas fa-feather-alt"></i> <span>开放合作 & 创意项目邀约</span></p>
+                    <a href="#" class="contact-btn" id="copyEmailBtn"><i class="far fa-copy"></i> 复制邮箱</a>
+                </div>
+                <div class="social-links">
+                    <a href="#" class="social-icon" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-icon" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
+                    <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon" aria-label="Codepen"><i class="fab fa-codepen"></i></a>
+                </div>
+            </div>
+            <div style="margin-top: 1.5rem; font-size: 0.85rem; color:#afbadc; border-top: 1px dashed rgba(228,179,99,0.3); padding-top: 1rem;">
+                <i class="fas fa-butterfly" style="margin-right: 6px;"></i> 每一只蝴蝶都是光的信使 — 期待与同频的你相遇。
+            </div>
+        </div>
+    </section>
+
+    <!-- footer 版权与灵感 -->
+    <footer>
+        <p>© 2025 luxpapilio · 光翼之境 | 以蝶之姿，雕刻时光</p>
+        <p style="margin-top: 6px; font-size: 0.7rem;">✨  luminous metamorphosis ✨</p>
+    </footer>
+</div>
+
+<!-- 简易交互：复制邮箱地址反馈 -->
+<script>
+    (function() {
+        const copyBtn = document.getElementById('copyEmailBtn');
+        if(copyBtn) {
+            copyBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const email = "hello@luxpapilio.space";
+                navigator.clipboard.writeText(email).then(() => {
+                    // 临时提示
+                    const originalText = copyBtn.innerHTML;
+                    copyBtn.innerHTML = '<i class="fas fa-check"></i> 已复制！';
+                    setTimeout(() => {
+                        copyBtn.innerHTML = originalText;
+                    }, 2000);
+                }).catch(() => {
+                    alert("手动复制吧 ~ " + email);
+                });
+            });
+        }
+
+        // 平滑悬浮效果，让社交链接占位符空链接不跳转(阻止默认)
+        const socialIcons = document.querySelectorAll('.social-icon');
+        socialIcons.forEach(icon => {
+            icon.addEventListener('click', (e) => {
+                e.preventDefault();
+                // 可以 console 或者后续自定义社交链接（预留）
+                // 目前仅作为样式展示，可自行配置真实地址。
+                // 给一个轻提示，表示社交 hub 准备中（优雅提示）
+                if(icon.getAttribute('href') === '#') {
+                    // 轻柔的信息提醒（不干扰体验）
+                    const fakeToast = document.createElement('div');
+                    fakeToast.innerText = '✨ 蝴蝶飞往 🌐 社交花园正在建设中，敬请期待';
+                    fakeToast.style.position = 'fixed';
+                    fakeToast.style.bottom = '25px';
+                    fakeToast.style.left = '50%';
+                    fakeToast.style.transform = 'translateX(-50%)';
+                    fakeToast.style.backgroundColor = '#1f2a3ecc';
+                    fakeToast.style.backdropFilter = 'blur(12px)';
+                    fakeToast.style.padding = '8px 20px';
+                    fakeToast.style.borderRadius = '40px';
+                    fakeToast.style.fontSize = '0.8rem';
+                    fakeToast.style.color = '#f2e3c9';
+                    fakeToast.style.border = '1px solid #e4b363';
+                    fakeToast.style.zIndex = '1000';
+                    fakeToast.style.fontWeight = '500';
+                    fakeToast.style.pointerEvents = 'none';
+                    document.body.appendChild(fakeToast);
+                    setTimeout(() => {
+                        fakeToast.style.opacity = '0';
+                        setTimeout(() => fakeToast.remove(), 400);
+                    }, 2000);
+                }
+            });
+        });
+    })();
+</script>
+<!-- 额外细节：调整浮动蝴蝶避免覆盖文字 -->
+<style>
+    @media (max-width: 700px) {
+        .butterfly-deco, .butterfly-deco-left { display: none; }
+    }
+    .glass-card, .skill-item, .social-icon, .contact-btn {
+        transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    h1, h2, .section-title {
+        font-weight: 500;
+    }
+    .about-highlight {
+        text-shadow: 0 0 4px rgba(228,179,99,0.3);
+    }
+    i, .fas, .fab {
+        pointer-events: none;
+    }
+    .contact-btn i {
+        pointer-events: none;
+    }
+</style>
+</body>
+</html>
+>>>>>>> 32a0345 (forst commit)
