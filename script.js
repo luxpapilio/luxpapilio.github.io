@@ -159,18 +159,3 @@ document.addEventListener('DOMContentLoaded', () => {
     // 立即检查一次
     handleScrollAnimation();
 });
-
-// ===== B站 链接跳转确认（可选） =====
-const bilibiliCard = document.getElementById('bilibili-card');
-if (bilibiliCard) {
-    bilibiliCard.addEventListener('click', function(e) {
-        // 这里可以替换为你的真实B站主页链接
-        const bilibiliUrl = 'https://space.bilibili.com/3546685972155067?spm_id_from=333.337.0.0';
-        const userConfirmed = confirm(`即将跳转到B站主页：${bilibiliUrl}`);
-        if (!userConfirmed) {
-            e.preventDefault();
-        } else {
-            this.setAttribute('href', bilibiliUrl);
-        }
-    });
-}

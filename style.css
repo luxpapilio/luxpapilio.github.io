@@ -743,6 +743,75 @@ a {
     color: var(--text-muted);
 }
 
+/* ===== 工作台工具区块 ===== */
+.tools-section {
+    background: var(--bg-primary); /* 与技能区块背景统一，也可以换成 var(--bg-secondary) */
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.tool-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 28px 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.tool-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+.tool-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-purple);  /* 统一使用主题紫色 */
+    transition: color 0.3s ease;
+}
+
+.tool-card:hover .tool-icon {
+    color: var(--accent-pink);    /* 悬浮时变为粉色，增加互动感 */
+}
+
+/* 响应式：平板端两列，手机端一列 */
+@media (max-width: 768px) {
+    .tools-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    
+    .tool-card {
+        padding: 20px 16px;
+    }
+    
+    .tool-icon {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .tools-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* ===== 响应式设计 ===== */
 @media (max-width: 768px) {
     .hero-content {

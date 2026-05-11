@@ -27,6 +27,7 @@
                 <a href="#about" class="nav-link">关于我</a>
                 <a href="#skills" class="nav-link">技能</a>
                 <a href="#project" class="nav-link">项目</a>
+                <a href="#tools" class="nav-link">工具</a>
                 <a href="#contact" class="nav-link">联系</a>
             </nav>
             <!-- 移动端菜单按钮 -->
@@ -194,6 +195,69 @@
             </div>
         </section>
 
+        <!-- 工作台 -->
+        <section id="tools" class="section tools-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">工作台</span>
+                    <h2 class="section-title">日常开发环境</h2>
+                </div>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <!-- VS Code 图标：代码编辑器风格 -->
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="16 18 22 12 16 6"></polyline>
+                                <polyline points="8 6 2 12 8 18"></polyline>
+                                <line x1="12" y1="2" x2="12" y2="22"></line>
+                            </svg>
+                        </div>
+                        <h3>VS Code</h3>
+                        <p>主力代码编辑器，高度可定制且插件丰富，是编写 Python 和 Rust 的最佳伙伴。</p>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <!-- Windows 11 风格图标：四个方块 -->
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                                <rect x="2" y="2" width="9" height="9" rx="1.5" />
+                                <rect x="13" y="2" width="9" height="9" rx="1.5" />
+                                <rect x="2" y="13" width="9" height="9" rx="1.5" />
+                                <rect x="13" y="13" width="9" height="9" rx="1.5" />
+                            </svg>
+                        </div>
+                        <h3>Windows 11</h3>
+                        <p>日常使用的操作系统，为桌面应用开发提供了稳定的环境。</p>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <!-- 终端图标：>_ 风格 -->
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="4 17 10 11 4 5"></polyline>
+                                <line x1="12" y1="19" x2="20" y2="19"></line>
+                            </svg>
+                        </div>
+                        <h3>Windows Terminal</h3>
+                        <p>现代、快速的终端模拟器，是运行 TUI 应用和命令行的入口。</p>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <!-- 美化/主题图标：调色板或星形 -->
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5" />
+                                <path d="M8.5 8.5v.01" />
+                                <path d="M16 15.5v.01" />
+                                <path d="M12 12v.01" />
+                                <path d="M11 17v.01" />
+                                <path d="M15 9v.01" />
+                            </svg>
+                        </div>
+                        <h3>oh-my-posh + fastfetch</h3>
+                        <p>终端美化与系统信息展示，让命令行更具个性与效率。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- 联系 -->
         <section id="contact" class="section contact-section">
             <div class="container">
@@ -215,9 +279,8 @@
                         <span class="contact-arrow">↗</span>
                     </a>
                     <!-- B站 卡片 -->
-                    <a href="#" target="_blank" rel="noopener" class="contact-card" id="bilibili-card">
+                    <a href="https://space.bilibili.com/3546685972155067?spm_id_from=333.337.0.0" target="_blank" rel="noopener" class="contact-card">
                         <div class="contact-icon">
-                            <!-- B站 风格图标 -->
                             <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.813 4.653h.854c1.51.054 2.769.578 3.773 1.574 1.004.995 1.524 2.254 1.56 3.773v7.254c-.036 1.51-.556 2.769-1.56 3.773s-2.262 1.56-3.773 1.56H5.333c-1.51-.036-2.769-.556-3.773-1.56S0 18.764 0 17.254V10c0-1.52.556-2.779 1.56-3.773 1.004-.996 2.262-1.52 3.773-1.574h.774l-1.174-1.12a1.234 1.234 0 0 1-.373-.906c0-.356.124-.658.373-.907l.027-.027c.267-.249.573-.373.92-.373.347 0 .653.124.92.373L9.653 4.44c.071.071.134.142.187.213h4.267a.836.836 0 0 1 .16-.213l2.853-2.747c.267-.249.573-.373.92-.373.347 0 .662.151.929.4.267.249.391.551.391.907 0 .355-.124.657-.373.906zM5.333 7.24c-.746.018-1.373.276-1.88.773-.506.498-.769 1.13-.786 1.894v7.147c.017.764.28 1.396.786 1.894.507.498 1.134.756 1.88.773h13.334c.746-.017 1.373-.275 1.88-.773.506-.498.769-1.13.786-1.894v-7.147c-.017-.764-.28-1.396-.786-1.894-.507-.497-1.134-.755-1.88-.773zM8 11.107c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c0-.373.129-.684.386-.933.258-.249.573-.378.947-.4zm8 0c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c.017-.391.15-.711.4-.96.249-.249.56-.373.933-.373z"/></svg>
                         </div>
                         <div class="contact-info">
